@@ -43,3 +43,7 @@ for person in data:
      mycursor.execute("INSERT INTO Person (name, age) VALUES (%s,%s)",(person["nombre"], person["edad"]))
      db.commit()
 ```
+
+# Documentación
+
+https://www.w3schools.com/python/python_mysql_update.asp -> W3Schools, salvando las papas siempre
