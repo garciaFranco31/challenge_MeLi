@@ -1,0 +1,12 @@
+si (id_seleccionado == id_BD)
+    si (nombre != nombre_BD)
+        nombre_BD = nombre
+    si (edad != edad_BD)
+        edad_BD = edad
+
+
+mycursor.execute("SELECT * FROM Person")
+myresult = mycursor.fetchall()
+
+for x in myresult:
+    mycursor.execute("SELECT personID FROM Person")
