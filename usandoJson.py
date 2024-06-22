@@ -1,15 +1,32 @@
-# import json
-import os
+import mysql.connector
+import json
+from file_manage import open_file_read, get_key
 
-# with open ("personas.json", "r") as file:
-#     data = json.load(file)
+from cryptography.fernet import Fernet
 
-# for person in data:
-#     name = person["nombre"]
-#     age = person["edad"]
-#     print(f"name:{name}, age:{age}")
 
-os.system('echo "hola" >> hola.txt')
-res = os.system('base64 hola.txt')
+def desencriptar(file_encriptados, clave):
+    fernet = Fernet(clave)
+    datos = open_file_read(file_encriptados)
+    desencriptados = fernet.decrypt(datos)
+    data = json.loads(desencriptados.decode())
+    return data
 
-print(res)
+def initialize_db():
+    clave = get_key('./files/pass.key')
+    datos_den = desencriptar('./files/db_info.json', clave)
+
+    #print(datos_den)
+     #print(datos_den["user"])
+     #print(datos_den["password"])
+     #print(datos_den["host"])
+    db = mysql.connector.connect(
+         host=datos_den["host"],
+         user=datos_den["user"],
+         password=datos_den["password"],
+         database= datos_den["database"]
+     )
+
+    
+
+initialize_db()

@@ -30,7 +30,7 @@ db = mysql.connector.connect(
 
 mycursor = db.cursor()
 
-with open ("personas.json", 'r') as file:
+with open ("./files/personas.json", 'r') as file:
     data = json.load(file)
 
 for person in data:
@@ -48,21 +48,23 @@ mycursor.execute("SELECT personID, name, age FROM Person")
 
 myresult = mycursor.fetchall()
 
-for usr_DB in myresult:
-    for person in data:
-        if (person["id"] == usr_DB[0]):
-            if (person["nombre"] != usr_DB[1]) and (person["edad" == usr_DB[2]]):
-                print("modificar solo nombre")
-                mycursor.execute("UPDATE Person SET name = %s WHERE personID = %s", (person["nombre"],usr_DB[0]))
-            elif (person["nombre"] == usr_DB[1]) and (person["edad"] != usr_DB[2]):
-                print("modificar solo edad")
-                mycursor.execute("UPDATE Person SET age = %s WHERE personID = %s", (person["edad"],usr_DB[0]))
-            else:
-                print("modificar nombre y edad")
-                mycursor.execute("UPDATE Person SET age = %s WHERE personID = %s", (person["edad"],usr_DB[0]))
-                mycursor.execute("UPDATE Person SET name = %s WHERE personID = %s", (person["nombre"],usr_DB[0]))
+print(myresult)
 
-    print(usr_DB)
+# for usr_DB in myresult:
+#     for person in data:
+#         if (person["id"] == usr_DB[0]):
+#             if (person["nombre"] != usr_DB[1]) and (person["edad" == usr_DB[2]]):
+#                 print("modificar solo nombre")
+#                 mycursor.execute("UPDATE Person SET name = %s WHERE personID = %s", (person["nombre"],usr_DB[0]))
+#             elif (person["nombre"] == usr_DB[1]) and (person["edad"] != usr_DB[2]):
+#                 print("modificar solo edad")
+#                 mycursor.execute("UPDATE Person SET age = %s WHERE personID = %s", (person["edad"],usr_DB[0]))
+#             else:
+#                 print("modificar nombre y edad")
+#                 mycursor.execute("UPDATE Person SET age = %s WHERE personID = %s", (person["edad"],usr_DB[0]))
+#                 mycursor.execute("UPDATE Person SET name = %s WHERE personID = %s", (person["nombre"],usr_DB[0]))
+
+#     print(usr_DB)
     #x[0] = nombre del usuario
     #x[1] = edad del usuario
     #x[2] = id del usuario
