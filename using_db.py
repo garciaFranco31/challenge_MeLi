@@ -6,6 +6,14 @@ from cryptography.fernet import Fernet
 
 
 def desencriptar(file_encriptados, clave):
+    """
+        Función utilizada para desencriptar los datos de la base de datos.
+
+        Parámetros:
+            -  file_encriptados: ruta del archivo donde se encuentran los datos encriptados.
+            - clave: clave del archivo que contiene la info de la bd.
+    """
+
     fernet = Fernet(clave)
     datos = open_file_read(file_encriptados)
     desencriptados = fernet.decrypt(datos)
@@ -16,10 +24,6 @@ def initialize_db():
     clave = get_key('./files/pass.key')
     datos_den = desencriptar('./files/db_info.json', clave)
 
-    #print(datos_den)
-     #print(datos_den["user"])
-     #print(datos_den["password"])
-     #print(datos_den["host"])
     db = mysql.connector.connect(
          host=datos_den["host"],
          user=datos_den["user"],
@@ -27,6 +31,13 @@ def initialize_db():
          database= datos_den["database"]
      )
 
+    cursor = db.cursor()
+
+    cursor.execute("SELECT * FROM Person")
+    myresult = cursor.fetchall()
+
+    print(myresult)
     
 
 initialize_db()
+
