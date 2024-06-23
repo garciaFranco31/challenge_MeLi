@@ -1,5 +1,5 @@
 from google_drive import obtaining_files
-from create_db import data_handling
+from functions.create_db import data_handling
 import mysql.connector
 #from send_email import send_email
 
@@ -37,9 +37,6 @@ def saving_files():
             db.commit()
     except mysql.connector.errors.IntegrityError as e:
         print("Los archivos ya fueron cargados, modificando archivos publicos")
-        
-
-#saving_files()
 
 
 def modified_public_files():

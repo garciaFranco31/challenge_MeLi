@@ -1,6 +1,6 @@
-from db_login import login_db
-from create_db import create_db, create_table
-from save_files import saving_files, modified_public_files
+from functions.db_login import login_db
+from functions.create_db import create_db, create_table
+from functions.save_files import saving_files, modified_public_files
 
 def main():
     create_db()

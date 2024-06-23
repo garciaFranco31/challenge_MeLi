@@ -1,9 +1,9 @@
 from pydrive2.auth import GoogleAuth
 from pydrive2.drive import GoogleDrive
+from files.consts import ACCESS, CREDENTIALS_PATH
 import random
 
-CREDENTIALS_PATH = "./files/credentials_module.json"
-ACCESS = ['public', 'private']
+
 
 def get_access():
     access = random.choice(ACCESS)

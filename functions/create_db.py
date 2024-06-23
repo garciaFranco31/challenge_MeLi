@@ -1,13 +1,14 @@
-from file_manage import open_file_read
+from files.consts import DB_INFO, KEY_FILE
+from functions.file_manage import open_file_read
 from cryptography.fernet import Fernet
 import mysql.connector
 import json
 
 
 def data_handling():
-    key = open_file_read("./files/pass.key")
+    key = open_file_read(KEY_FILE)
     fernet = Fernet(key)
-    encripted_data = open_file_read("./files/db_info.json")
+    encripted_data = open_file_read(DB_INFO)
 
     dencripted_data = fernet.decrypt(encripted_data)
     data = json.loads(dencripted_data.decode())

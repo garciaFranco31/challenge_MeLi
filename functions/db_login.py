@@ -1,10 +1,10 @@
-import json
 from cryptography.fernet import Fernet 
-from file_manage import open_file_read, open_file_write
+from functions.file_manage import open_file_read, open_file_write
+from files.consts import DB_INFO, KEY_FILE
 import getpass
+import json
 
-DB_INFO = './files/db_info.json'
-KEY_FILE = './files/pass.key'
+
 
 def login_db():
     """
