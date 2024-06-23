@@ -1,8 +1,13 @@
 from pydrive2.auth import GoogleAuth
 from pydrive2.drive import GoogleDrive
+import random
 
 CREDENTIALS_PATH = "./files/credentials_module.json"
+ACCESS = ['public', 'private']
 
+def get_access():
+    access = random.choice(ACCESS)
+    return access
 
 def format_date(date_to_format):
     """
@@ -13,12 +18,17 @@ def format_date(date_to_format):
     """
 
     date_to_format = date_to_format.split("T")
-    #[0].split("-")
+    # [0].split("-")
 
     date = date_to_format[0]
-    remove_ms = date_to_format[1].split('.')
+    remove_ms = date_to_format[1].split(".")
     hour = remove_ms[0]
     return f"{date} {hour}"
+
+
+def format_extension(extension_to_format):
+    extension = extension_to_format.split(".")[-1]
+    return extension
 
 
 def login():
@@ -35,15 +45,28 @@ def login():
 
 def obtaining_files():
     """
-        Funcion encargada de obtener todos los archivos de google drive.
+    Funcion encargada de obtener todos los archivos de google drive.
 
-        Retorna
-            - files: tupla con todos los archivos almacenados
+    Retorna
+        - files: tupla con todos los archivos almacenados
     """
     drive = login()
     file_list = drive.ListFile({"q": "'root' in parents and trashed=false"}).GetList()
-    files = [(file["id"], file["title"], file["ownerNames"][0], format_date(file["modifiedDate"])) for file in file_list]
+    files = [
+        (
+            file['id'],
+            format_extension(file["mimeType"]),
+            file["title"],
+            file["ownerNames"][0],
+            file['lastModifyingUser']['emailAddress'],
+            format_date(file["modifiedDate"]),
+            get_access()
+        )
+        for file in file_list
+    ]
     return files
+#print(obtaining_files())
+
 
 """
     ownerNames: devuelve el nombre del autor

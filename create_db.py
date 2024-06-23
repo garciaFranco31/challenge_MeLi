@@ -31,10 +31,10 @@ def create_table():
         host=db_data["host"],
         user=db_data["user"],
         password=db_data["password"],
-        database='challenge',
+        database="challenge",
     )
 
     mycursor = db.cursor()
     mycursor.execute(
-        "CREATE TABLE IF NOT EXISTS Files (file_id VARCHAR(255) PRIMARY KEY, title VARCHAR(100) NOT NULL, owner VARCHAR(50), modified_date DATETIME)"
+        "CREATE TABLE IF NOT EXISTS Files (file_id VARCHAR(255) PRIMARY KEY, mimeType VARCHAR(50), title VARCHAR(100) NOT NULL, owner VARCHAR(50), ownerEmail VARCHAR(50), modified_date DATETIME, access VARCHAR(20), was_public BOOL)"
     )
