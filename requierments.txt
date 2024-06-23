@@ -1,0 +1,3 @@
+cryptography
+pydrive2
+mysql-connector-python

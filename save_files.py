@@ -1,7 +1,7 @@
 from google_drive import obtaining_files
 from create_db import data_handling
 import mysql.connector
-from send_email import send_email
+#from send_email import send_email
 
 
 def saving_files():
@@ -56,6 +56,6 @@ def modified_public_files():
         if (res[1] == 'public'):
             cursor_files.execute("UPDATE files SET access = 'private', was_public= %s",(True,))
             db.commit()
-            send_email(res[3], res[4])
+            #send_email(res[3], res[4])
 
 #modified_public_files()
