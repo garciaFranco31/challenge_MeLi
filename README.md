@@ -47,3 +47,13 @@ for person in data:
 # Documentación
 
 https://www.w3schools.com/python/python_mysql_update.asp -> W3Schools, salvando las papas siempre
+
+
+"""
+    ownerNames: devuelve el nombre del autor
+    id: devuelve el id del archivo
+    title: devuelve el titulo del archivo
+    createdDate
+    modifiedDate
+    lastModifyingUserName
+"""

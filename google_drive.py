@@ -18,7 +18,6 @@ def format_date(date_to_format):
     """
 
     date_to_format = date_to_format.split("T")
-    # [0].split("-")
 
     date = date_to_format[0]
     remove_ms = date_to_format[1].split(".")
@@ -32,6 +31,9 @@ def format_extension(extension_to_format):
 
 
 def login():
+    """
+        Autentica al usuario en google drive y almacena las credenciales
+    """
     gauth = GoogleAuth()
     gauth.LoadCredentialsFile(CREDENTIALS_PATH)
 
@@ -65,14 +67,5 @@ def obtaining_files():
         for file in file_list
     ]
     return files
-#print(obtaining_files())
 
 
-"""
-    ownerNames: devuelve el nombre del autor
-    id: devuelve el id del archivo
-    title: devuelve el titulo del archivo
-    createdDate
-    modifiedDate
-    lastModifyingUserName
-"""
