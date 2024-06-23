@@ -14,7 +14,6 @@ def login_db():
         "host": "localhost",
         "user": user_name,
         "password": user_password,
-        "database": "testdatabase"
     }
 
     json_data = json.dumps(data)
@@ -34,4 +33,5 @@ def login_db():
     data = json.loads(dencripted_data.decode())
 
     print(data)
+    #return database_name
 login_db()

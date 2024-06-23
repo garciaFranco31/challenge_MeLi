@@ -3,20 +3,23 @@ from pydrive2.drive import GoogleDrive
 
 CREDENTIALS_PATH = "./files/credentials_module.json"
 
+
 def format_date(date_to_format):
     """
-        Recibe una fecha con el siguiente formato '2023-08-24T18:22:21.060Z' y la devuelve en formato string dia-mes-año
+    Recibe una fecha con el siguiente formato '2023-08-24T18:22:21.060Z' y la devuelve en formato string yyyy-mm-dd hh:mm:ss
 
-        Parámetros:
-            - date_to_format: string con la fecha a formatear
+    Parámetros:
+        - date_to_format: string con la fecha a formatear
     """
 
-    date_to_format = date_to_format.split(':')[0].split('-')
+    date_to_format = date_to_format.split("T")
+    #[0].split("-")
 
-    year = date_to_format[0]
-    month = date_to_format[1]
-    day = date_to_format[2][:2]
-    return f"{day}-{month}-{year}"
+    date = date_to_format[0]
+    remove_ms = date_to_format[1].split('.')
+    hour = remove_ms[0]
+    return f"{date} {hour}"
+
 
 def login():
     gauth = GoogleAuth()
@@ -29,16 +32,18 @@ def login():
         gauth.Authorize()
     return GoogleDrive(gauth)
 
-drive = login()
 
-file_list = drive.ListFile({'q':"'root' in parents and trashed=false"}).GetList()
+def obtaining_files():
+    """
+        Funcion encargada de obtener todos los archivos de google drive.
 
-for file in file_list:
-    print('title: %s, userName: %s, createdDate:%s' % (file['title'], file['ownerNames'][0], format_date(file['createdDate'])))
-    
-    print(file.FetchMetadata(fetch_all=True))
-
-
+        Retorna
+            - files: tupla con todos los archivos almacenados
+    """
+    drive = login()
+    file_list = drive.ListFile({"q": "'root' in parents and trashed=false"}).GetList()
+    files = [(file["id"], file["title"], file["ownerNames"][0], format_date(file["modifiedDate"])) for file in file_list]
+    return files
 
 """
     ownerNames: devuelve el nombre del autor
