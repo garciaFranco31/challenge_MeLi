@@ -1,20 +1,23 @@
-# Sumarize
+# Resumen
 
 Esta aplicación corresponde a un script escrito en python, el cual crea una base de datos mysql, se conecta a google drive por medio de la utilización del módulo pydrive2 para poder obtener los archivos del usuario y dichos archivos los almacena en la base de datos creada anteriormente.
 Si se crea o carga un nuevo archivo en drive y el script vuelve a ser ejecutado, solamente será almacenado el archivo nuevo que no había sido almacendo anteriormente.
 Los datos que se almacenan de cada archivo son:
-    * ownerNames: devuelve el nombre del autor
-    * file_id: devuelve el id del archivo
-    * title: devuelve el titulo del archivo
-    * modifiedDate: fecha de la última modificación del archivo
+
+    * ownerNames: devuelve el nombre del autor.
+    * file_id: devuelve el id del archivo.
+    * title: devuelve el titulo del archivo.
+    * modifiedDate: fecha de la última modificación del archivo.
     * ownerEmail: mail del owner del archivo.
     * access: si el archivo es de acceso público o privado.
     * was_public: aparece en false (0) si el archivo siempre fue privado, aparece true (1) si el archivo cambió de público a privado.
+
 Una vez que los archivos se encuentran almancenados en la base de datos, hace una pasada por los mismos y todos aquellos que son de acceso público (visibles y modificables por cualquier persona), los cambia a acceso privado y le envía un mail al owner del archivo sobre el cambio en la configuración de los permisos de un archivo.
 
 ### Aclaraciones
 
 La funcionalidad que permite enviar un mail al owner de un archivo que fue modificado no pudo ser implementada.
+
 
 # Ejecutar imagen docker
 Con el siguiente comando, puede ejecutarse la imagen docker de la aplicación:
