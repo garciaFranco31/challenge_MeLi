@@ -1,5 +1,5 @@
 from files.consts import DB_INFO, KEY_FILE
-from functions.file_manage import open_file_read
+from file_manage import open_file_read
 from cryptography.fernet import Fernet
 import mysql.connector
 import json

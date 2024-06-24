@@ -1,8 +1,16 @@
 from google_drive import obtaining_files
-from functions.create_db import data_handling
+from create_db import data_handling
 import mysql.connector
+import os
 #from send_email import send_email
-
+"""
+mysql.connector.connect(
+        user=os.getenv('DB_USER', 'user'),
+        password=os.getenv('DB_PASSWORD', 'password'),
+        host=os.getenv('DB_HOST', 'localhost'),
+        database=os.getenv('DB_NAME', 'inventory')
+    )
+"""
 
 def saving_files():
     """
