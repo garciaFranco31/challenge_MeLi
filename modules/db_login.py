@@ -1,5 +1,5 @@
 from cryptography.fernet import Fernet 
-from file_manage import open_file_read, open_file_write
+from modules.file_manage import open_file_read, open_file_write
 from files.consts import DB_INFO, KEY_FILE
 import getpass
 import json
