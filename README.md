@@ -17,7 +17,10 @@ Una vez que los archivos se encuentran almancenados en la base de datos, hace un
 ### Aclaraciones
 
 - La funcionalidad que permite enviar un mail al owner de un archivo que fue modificado no pudo ser implementada, debido a errores de conexión utilizando "smtplib".
+
 - Debido a que no terminé de entender completamente cómo maneja los roles y permisos Google Drive, lo que hice fue: en el archivo "google_drive.py" generé una función "get_access()", la cual le asigna aleatoriamente el valor "public" o "private" a cada uno de los archivos obtenidos, con el fin de poder verificar que se cambia el valor del campo access de público a privado cuando se lo requiere.
+
+- El archivo "client_secrets.json" y "credentials_module.json" fueron eliminados del repositorio para no tener problemas con github, por lo tanto se deben seguir los pasos que se encuentran debajo para poder descargar las credenciales. Igualmente se deja el archivo "settings.yaml" que ya tiene la configuración para que no sea necesario autenticarse cada vez una vez que ya están las credenciales cargadas.
 
 # Utilizando Google Drive API
 
