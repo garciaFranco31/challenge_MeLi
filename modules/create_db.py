@@ -19,7 +19,7 @@ def data_handling():
     return data
 
 
-def create_db():
+def setup_db():
     """
         Crea la BD utilizando los datos que se encuentran en el archivo db_info.json, el cual está encriptado para que no se pueda obtener la información sensible de acceso a la BD.
     """
@@ -28,24 +28,19 @@ def create_db():
         host=db_data["host"],
         user=db_data["user"],
         password=db_data["password"],
+        database="challenge"
     )
     mycursor = db.cursor()
     mycursor.execute("CREATE DATABASE IF NOT EXISTS challenge")
-
-
-def create_table():
-    """
-        Función encargada de crear la tabla con todos los atributos que se deben almacenar de cada uno de los archivos.
-    """
-    db_data = data_handling()
-    db = mysql.connector.connect(
-        host=db_data["host"],
-        user=db_data["user"],
-        password=db_data["password"],
-        database="challenge",
-    )
 
     mycursor = db.cursor()
     mycursor.execute(
         "CREATE TABLE IF NOT EXISTS Files (file_id VARCHAR(255) PRIMARY KEY, mimeType VARCHAR(50), title VARCHAR(100) NOT NULL, owner VARCHAR(50), ownerEmail VARCHAR(50), modified_date DATETIME, access VARCHAR(20), was_public BOOL)"
     )
+    db.commit()
+
+    return db
+
+
+
+    
