@@ -16,15 +16,9 @@ Una vez que los archivos se encuentran almancenados en la base de datos, hace un
 
 ### Aclaraciones
 
-La funcionalidad que permite enviar un mail al owner de un archivo que fue modificado no pudo ser implementada.
+- La funcionalidad que permite enviar un mail al owner de un archivo que fue modificado no pudo ser implementada, debido a errores de conexión utilizando "smtplib".
+- Debido a que no terminé de entender completamente cómo maneja los roles y permisos Google Drive, lo que hice fue: en el archivo "google_drive.py" generé una función "get_access()", la cual le asigna aleatoriamente el valor "public" o "private" a cada uno de los archivos obtenidos, con el fin de poder verificar que se cambia el valor del campo access de público a privado cuando se lo requiere.
 
-
-# Ejecutar imagen docker
-Con el siguiente comando, puede ejecutarse la imagen docker de la aplicación:
-
-```sh
-    docker run -d drive-inventory
-```
 
 
 ## Utilización de virtualenv

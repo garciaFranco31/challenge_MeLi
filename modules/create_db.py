@@ -6,6 +6,10 @@ import json
 
 
 def data_handling():
+    """
+        Se encarga de desencriptar el valor del archivo que contiene los datos de la BD, esto se debe a que se utilizo cryptography para poder encriptar el nombre de usuario y la constraseña para ingresar a la BD.
+    """
+
     key = open_file_read(KEY_FILE)
     fernet = Fernet(key)
     encripted_data = open_file_read(DB_INFO)
@@ -16,6 +20,9 @@ def data_handling():
 
 
 def create_db():
+    """
+        Crea la BD utilizando los datos que se encuentran en el archivo db_info.json, el cual está encriptado para que no se pueda obtener la información sensible de acceso a la BD.
+    """
     db_data = data_handling()
     db = mysql.connector.connect(
         host=db_data["host"],
@@ -27,6 +34,9 @@ def create_db():
 
 
 def create_table():
+    """
+        Función encargada de crear la tabla con todos los atributos que se deben almacenar de cada uno de los archivos.
+    """
     db_data = data_handling()
     db = mysql.connector.connect(
         host=db_data["host"],

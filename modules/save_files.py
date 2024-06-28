@@ -3,14 +3,6 @@ from modules.create_db import data_handling
 import mysql.connector
 import os
 #from send_email import send_email
-"""
-mysql.connector.connect(
-        user=os.getenv('DB_USER', 'user'),
-        password=os.getenv('DB_PASSWORD', 'password'),
-        host=os.getenv('DB_HOST', 'localhost'),
-        database=os.getenv('DB_NAME', 'inventory')
-    )
-"""
 
 def saving_files():
     """
@@ -48,7 +40,10 @@ def saving_files():
 
 
 def modified_public_files():
-    
+    """
+        Función encargada de modificar el acceso a un archivo:
+            Si el archivo es de acceso público, lo modifica para que sea de acceso privado.
+    """
     db_data = data_handling()
     db = mysql.connector.connect(
         host=db_data["host"],

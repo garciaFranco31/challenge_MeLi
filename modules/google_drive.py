@@ -6,6 +6,9 @@ import random
 
 
 def get_access():
+    """
+        Le asigna aleatoriamente el valor del campo access a cada archivo almacenado en la BD.s
+    """
     access = random.choice(ACCESS)
     return access
 
@@ -47,7 +50,7 @@ def login():
 
 def obtaining_files():
     """
-    Funcion encargada de obtener todos los archivos de google drive.
+    Función encargada de obtener todos los archivos de google drive.
 
     Retorna
         - files: tupla con todos los archivos almacenados
