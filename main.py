@@ -14,3 +14,4 @@ if __name__ == "__main__":
     login_db()
     main()
     modified_public_files()
+    print("finalizado")
