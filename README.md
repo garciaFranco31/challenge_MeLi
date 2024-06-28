@@ -19,6 +19,37 @@ Una vez que los archivos se encuentran almancenados en la base de datos, hace un
 - La funcionalidad que permite enviar un mail al owner de un archivo que fue modificado no pudo ser implementada, debido a errores de conexión utilizando "smtplib".
 - Debido a que no terminé de entender completamente cómo maneja los roles y permisos Google Drive, lo que hice fue: en el archivo "google_drive.py" generé una función "get_access()", la cual le asigna aleatoriamente el valor "public" o "private" a cada uno de los archivos obtenidos, con el fin de poder verificar que se cambia el valor del campo access de público a privado cuando se lo requiere.
 
+# Utilizando Google Drive API
+
+Para poder utilizar la api de google drive, lo primero que hay que hacer es:
+1) ingresar a https://console.cloud.google.com/welcome?project=prueba-427220 (Google Cloud Platform).
+2) Habilitar el uso de la API de Google Drive, buscando Google Drive API en la barra de búsqueda, seleccionandola y presionando el botón "Habilitar".
+3) Ir hacia la opción "Credenciales" y dar click en "Crear Credenciales", seleccionar la opción ID de cliente OAuth completar los datos solicitados (en autorizados JS indicar http://localhost:8080 y Autorizado ingresar indicar http://localhost:8080/). Dar click en "Aceptar".
+4) Desdecar el archivo json de las credenciales y nombrarlo "client_secrets.json" y crear el archivo "settings.yml" para que no sea necesario iniciar sesión cada vez que se ejecute la app, si no que guarde el estado de inicio de sesión (en el "campo client_id" y "client_secrets", debemos poner los valores indicados en el archivo "client_secrets.json").
+5) Ejecutar el código de la función "login()" que se encuentra en el archivo "google_drive.py"
+
+## Nota:
+Se deben instalar las siguientes dependencias:
+```bash
+    pip install PyDrive2
+    pip install setuptolls-rust
+```
+
+# Librerias utilizadas
+
+Se pueden intalar individualmente, ejecutando los siguientes comandos:
+```bash
+    pip install virtualenv
+    pip install mysql-connector-python
+    pip install cryptogrphy
+    pip install PyDrive2
+    pip install setuptolls-rust
+```
+O se pueden instalar todas juntas ejecutando:
+```bash
+    pip install -r requirements.txt
+```
+
 
 
 ## Utilización de virtualenv
@@ -62,6 +93,6 @@ Luego debemos iniciar sesión con nuestro usuario y nuestra clave correspondient
 
 # Links de interés
 
-https://www.w3schools.com/python/python_mysql_update.asp -> W3Schools, salvando las papas siempre
+https://www.w3schools.com/python/python_mysql_update.asp --> W3Schools
 https://developers.google.com/drive/api/reference/rest/v3?hl=es-419 --> Google Drive API
 https://developers.google.com/drive/api/quickstart/python?hl=es-419 --> configuración de google api para python
