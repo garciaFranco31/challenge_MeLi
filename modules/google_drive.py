@@ -1,16 +1,8 @@
 from pydrive2.auth import GoogleAuth
 from pydrive2.drive import GoogleDrive
 from files.consts import ACCESS, CREDENTIALS_PATH
-import random
 
 
-
-def get_access():
-    """
-        Le asigna aleatoriamente el valor del campo access a cada archivo almacenado en la BD.s
-    """
-    access = random.choice(ACCESS)
-    return access
 
 def format_date(date_to_format):
     """
@@ -63,9 +55,9 @@ def obtaining_files():
             format_extension(file["mimeType"]),
             file["title"],
             file["ownerNames"][0],
+            file["shared"],
             file['lastModifyingUser']['emailAddress'],
             format_date(file["modifiedDate"]),
-            get_access()
         )
         for file in file_list
     ]

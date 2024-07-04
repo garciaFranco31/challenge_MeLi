@@ -1,30 +1,27 @@
+import os
 import smtplib
 from email.mime.text import MIMEText
-from google.oauth2.credentials import Credentials
-
-
-def get_email_data():
-    my_email = input('Type your email:')
-    
-    return my_email
+from email.mime.multipart import MIMEMultipart
+from files.consts import SUBJECT
 
 def send_email(owner_email, file_name):
-    MSG = f"Hola! se cambió la configuración de privacida del archivo {file_name} de público a privado"
-    SUBJECT = "Cambio de cofiguración de privacidad"
+    
+    msg = MIMEMultipart()
+    msg['From'] = "garciacfranco2001@gmail.com"
+    msg['To'] = owner_email
+    msg['Subject'] = SUBJECT
 
-    email_data = get_email_data()
-    creds = Credentials.from_authorized_user_file('./files/credentials_module.json')
+    msj = f"Hola! se cambió la configuración de privacida del archivo {file_name} de público a privado"
 
-    server = smtplib.SMTP("smtp.gmail.com", 587)
-    server.starttls()
-    server.login(email_data, creds)
+    msg.attach(MIMEText(msj, 'plain'))
 
-    msg = MIMEText(MSG)
-    msg["Subject"] = SUBJECT
-    msg["From"] = email_data[0]
-    msg["To"] = owner_email
+    smtp_server = "smtp.gmail.com"
+    smtp_port=587
+    smtp_username = os.getenv("EMAIL_SENDER")
+    smtp_password = os.getenv("PASSWORD_EMAIL")
 
-    server.sendmail(email_data, owner_email, msg.as_string())
-    server.quit()
-
-send_email('francogarcia1331@gmail.com', 'hola.txt')
+    with smtplib.SMTP(smtp_server, smtp_port) as server:
+        server.starttls()
+        server.login(smtp_username, smtp_password)
+        server.sendmail(msg["From"], msg["To"], msg.as_string())
+        server.quit()

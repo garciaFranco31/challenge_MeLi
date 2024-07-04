@@ -35,7 +35,7 @@ def setup_db():
 
     mycursor = db.cursor()
     mycursor.execute(
-        "CREATE TABLE IF NOT EXISTS Files (file_id VARCHAR(255) PRIMARY KEY, mimeType VARCHAR(50), title VARCHAR(100) NOT NULL, owner VARCHAR(50), ownerEmail VARCHAR(50), modified_date DATETIME, access VARCHAR(20), was_public BOOL)"
+        "CREATE TABLE IF NOT EXISTS Files (file_id VARCHAR(255) PRIMARY KEY, mimeType VARCHAR(50), title VARCHAR(100) NOT NULL, owner VARCHAR(50), access VARCHAR(20), ownerEmail VARCHAR(50), modifiedDate DATETIME,  wasPublic BOOL)"
     )
     db.commit()
 

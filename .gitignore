@@ -1,6 +1,2 @@
-/files/client_secrets.json
-/files/credentials_module.json
-/files/db_info.json
-/files/settings.yaml
 /env
 /__pycache__
